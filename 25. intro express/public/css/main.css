@@ -1,0 +1,202 @@
+body{
+	padding: 0;
+	margin: 0;
+	font-family: Arial;
+}
+
+span{
+	position: relative;
+}
+span::after{ /* #fffcd6 */
+	background-color: #fffcd6;
+	content: '';
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	z-index: -1;
+}
+
+p a{ /* #184DA8 */
+	color: #184DA8;
+	text-decoration: none;
+}
+p a:hover{ /* #184DA8 */
+	text-decoration: underline;
+}
+
+.center-align{
+	margin: 0 auto;
+	width: 1100px;
+}
+
+.black{color: black;}
+.white{color: white;}
+
+.section-columns{
+}
+.section-columns > div{
+	display: inline-block;
+	vertical-align: top;
+	width: 49%;
+}
+
+.section-columns h2{
+	font-size: 72px;
+}
+
+#intro-container .section-columns h2{
+	padding-top: 120px;
+	padding-bottom: 30px;
+}
+
+.section-columns h3{
+	font-size: 26px;
+	font-weight: lighter;
+	line-height: 40px;
+}
+.section-columns p{
+	font-weight: lighter;
+	font-size: 16px;
+	line-height: 30px;
+	padding-bottom: 10px;
+}
+
+
+.section-columns #image-bg{
+	background-image: url('../img/header-background-michael.jpg');
+	background-repeat: no-repeat;
+	background-size: 750px;
+	background-position: -140px -80px;
+	height: 600px;
+}
+.section-columns #image-bg-02{
+	
+}
+
+.section-columns #bio{
+	height: 600px;
+}
+
+#work, #work02, #work03, #work04{
+	background-repeat: no-repeat;
+	background-size: 750px;
+	background-position: right center;
+	height: 600px;
+	padding-top: 150px;
+	margin-top: -50px;	
+}
+
+
+#work  {background-image: url('../img/poster-design-series.jpg');}
+#work02{background-image: url('../img/nerddiary-blog.jpg');}
+#work03{background-image: url('../img/nismo-design-concept.jpg');}
+#work04{background-image: url('../img/pixelschupser-mediendesign-website.jpg');}
+
+#footer{
+	margin-top: -50px;
+	padding-top: 50px;
+	height: 550px;
+
+	background-image: url('../img/footer-background-mountain.jpg');
+	background-size: 100%;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+
+#footer h3{color: white; padding-top: 70px; margin: 0;}
+#footer p {color: gray; padding-bottom: 30px;}
+
+.rectangle{
+	height: 100px;
+	margin-top: -50px;
+}
+.bg-white{
+	background-color: white;
+}
+.bg-gray{
+	background-color: #666;
+}
+.bg-black{
+	background-color: #000;
+}
+
+
+
+.skew-left{
+	transform: skewY(-4deg);
+}
+.skew-right{
+	transform: skewY(4deg);
+}
+
+.btn{
+	border: solid 1px;
+	padding: 20px 40px;
+	text-decoration: none;
+	margin-right: 10px;
+}
+.btn-black{
+	border-color: black;
+	color: black;
+}
+.btn-black:hover{
+	background-color: black;
+	border-color: white;
+	color: white;
+}
+.btn-white{
+	border-color: white;
+	color: white;
+}
+
+.btn-white:hover{
+	background-color: white;
+	border-color: black;
+	color: black;
+}
+
+#intro-container{
+	background-color: black;
+	padding-top: 100px;
+}
+
+#intro-container nav{
+	margin: 0;
+	padding: 0;
+}
+
+#intro-container nav div{
+	display: inline-block;
+	vertical-align: top;
+}
+
+#intro-container nav #logo{
+	width: 9%;
+
+}
+
+#intro-container nav #menu-lista{
+	width: 89%;
+	text-align: right;
+}
+#intro-container nav #menu-lista ul{
+	margin: 0;
+	padding: 0;
+}
+#intro-container nav #menu-lista ul li{
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+#intro-container nav #menu-lista ul li a{
+	color: #777;
+	text-decoration: none;
+}
+
+#intro-container nav #menu-lista ul li a:hover{
+	color: white;
+	text-decoration: white;
+}

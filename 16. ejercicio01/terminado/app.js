@@ -1,7 +1,10 @@
 const readline = require('readline');
+const Messages = require('./messages');
 const Document = require('./document');
 const Directory = require('./directory');
+
 const dir = new Directory();
+
 let interface = readline.createInterface(process.stdin, process.stdout);
 
 
@@ -34,9 +37,6 @@ function mainScreen(){
             break;
     
             default:
-            //console.log(`Debes ingresar una opción válida. Vuelve a iniciar el programa`);
-            //interface.close();
-            //interface.removeAllListeners('line');
             mainScreen();
         } 
     });
@@ -74,27 +74,27 @@ function createFile(){
 function save(file){
     if(file.hasName()){
         file.save()
-        renderInterface(file, `Archivo guardado, puedes seguir editando...\n`);
+        renderInterface(file, `${Messages.fileSaved}\n`);
     }else{
         saveAs(file);
     }
 }
 
 function saveAs(file){
-    interface.question('* Nombre del archivo: ', (name) =>{
+    interface.question(Messages.requestFileName, (name) =>{
         if(file.exists(name)){
-            console.log(`*** El archivo ${name} ya existe! ***`);
-                interface.question('Deseas sustituir el archivo?(y/n): ', (confirm)=>{
+            console.log(Messages.fileExists);
+                interface.question(Messages.replaceFile, (confirm)=>{
                     if(confirm == 'y'){
                         file.saveas(name);
-                        renderInterface(file, `Archivo guardado con éxito, puedes seguir editando...\n`);
+                        renderInterface(file, `${Messages.fileSaved}\n`);
                     }else{
-                        renderInterface(file, `Archivo no guardado, puedes seguir editando...\n`);
+                        renderInterface(file, `${Messages.fileNotSaved}\n`);
                     }
                 });
         }else{
             file.saveas(name);
-            renderInterface(file, `Archivo guardado con éxito, puedes seguir editando...\n`);
+            renderInterface(file, `${Messages.fileSaved}\n`);
         }
     });
 }
@@ -116,11 +116,11 @@ function renderInterface(file, mensaje){
 function openFileInterface(){
     let file = new Document(dir.getPath());
     dir.getFilesInDir();
-    interface.question('* Nombre del archivo para abrir: ', (name) =>{
+    interface.question(Messages.requestFileName, (name) =>{
         if(file.exists(name)){
             openFile(file, name);
         }else{
-            console.log('El archivo no existe');
+            console.log(Messages.fileNotFound);
             interface.removeAllListeners('line');  
             mainScreen();      
         }
