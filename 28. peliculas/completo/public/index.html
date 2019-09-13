@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Bienvenido</title>
+</head>
+<body>
+    <div id="main-container">
+            <h1>Registro de películas</h1>
+            <form action="/new" method="POST">
+                <p>
+                    <label for="">Nombre de la película</label><br/>
+                    <input type="text" name="nombre" id="nombre">
+                </p>
+                <p> 
+                    <label for="">Calificación</label><br/>
+                    <input type="range" min="0" max="10" name="rating" id="rating">
+                </p>
+                
+                <input type="button" id="bSubmit" value="Añadir nueva pelicula">
+            </form>
+
+            <div id="peliculas">
+                Hola
+            </div>
+    </div>
+
+    <script>
+        const bSumit = document.querySelector('#bSubmit');
+
+        loadPeliculas();
+
+        function loadPeliculas(){
+            fetch('/get-peliculas', {method: 'GET'})
+            .then(res =>{return res.json()})
+            .then(data =>{
+                const peliculas = document.querySelector('#peliculas');
+                let html = '';
+                data.peliculas.forEach(element => {
+                    html += `<div>${element.nombre} <img src='img/star.png' width='16' />${element.rating}</div>`;    
+                });
+                peliculas.innerHTML = html;
+            });
+        }
+
+        bSumit.addEventListener('click', (e) =>{
+            const nombre = document.querySelector('#nombre').value;
+            const rating = document.querySelector('#rating').value;
+            const bodyString = '';
+            if(nombre === '' || rating === '') return false;
+            fetch('/new', {
+                            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({nombre: nombre, rating: rating}) // body data type must match "Content-Type" header)
+                        })
+            .then(res =>{return res.text()})
+            .then(data =>{
+                alert(data);
+                loadPeliculas();
+            });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Peliculas</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="main-container">
+        <h1>Registro de películas</h1>
+        <form action="/new" method="POST">
+            <p>
+                <label for="">Nombre de la película</label><br/>
+                <input type="text" name="nombre" id="nombre">
+            </p>
+            <p>
+                <label for="">Calificación</label><br/>
+                <input type="range" min="0" max="10" name="rating" id="rating">
+            </p>
+
+            <input type="button" value="Registrar nueva película" id="bSubmit">
+        </form>
+
+        <div id="peliculas-container">
+
+        </div>
+    </div>
+
+    <script>
+        const bSubmit = document.querySelector('#bSubmit');
+
+        loadPeliculas();
+
+        bSubmit.addEventListener('click', () =>{
+            //validar campos
+            const nombre = document.querySelector('#nombre').value;
+            const rating = document.querySelector('#rating').value;
+
+            if(nombre.trim() === '' || rating.trim() === '') return false;
+
+            //mandar solicitud POST a /new
+            fetch('/new', {
+                method: 'POST', 
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({nombre: nombre, rating: rating})
+            })
+            .then(res => res.text())
+            .then(data =>{
+                // mostrar mensaje de error/éxito
+                alert(data);
+
+                //actualizar lista de peliculas
+                loadPeliculas();
+            });
+
+            
+
+            
+        });
+
+        function loadPeliculas(){
+            fetch('/get-peliculas', {method: 'GET'})
+            .then(res => res.json())
+            .then(data =>{
+                const peliculas = document.querySelector('#peliculas-container');
+                let html = '';
+                data.peliculas.forEach(pelicula =>{
+                    html += `<div>${pelicula.nombre} <img src="img/star.png" width="16" />${pelicula.rating}</div>`
+                });
+                peliculas.innerHTML = html;
+            });
+        }
+    </script>
+</body>
+</html>
