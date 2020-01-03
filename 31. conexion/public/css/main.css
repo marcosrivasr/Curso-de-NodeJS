@@ -1,0 +1,51 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+}
+#main-container{
+    margin: 0 auto;
+    width: 600px;
+}
+
+#main-container form input{
+    font-size: 24px;
+    padding: 20px;
+    width: 558px;
+}
+
+#todos .todo{
+    width: 100%;
+    margin: 10px 0;
+}
+
+#todos .todo div{
+    display: inline-block;
+    padding: 10px 5px;
+}
+#todos .todo .checkbox-container{
+    width: 25px;
+}
+
+#todos .todo .checkbox-container input{
+    transform: scale(2);
+}
+
+#todos .todo .text-container{
+    color: black;
+    width: 495px;
+}
+
+#todos .todo .completed{
+    color: #ccc;
+    text-decoration: line-through;
+}
+
+#todos .todo .actions-container a{
+    color: #ccc;
+    font-weight: bolder;
+    text-decoration: none;
+    padding: 10px;
+}
+#todos .todo .actions-container a:hover{
+    color: rgb(30, 71, 136);
+}
