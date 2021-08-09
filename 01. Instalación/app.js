@@ -5,7 +5,7 @@ var nombre = "Marcos Rivas";
 
 //console.log(`\n\nHello ${nombre}`);
 var nombre = function saludo(){
-	console.log("Holi");
+	console.log("Hola como estas?");
 };
 
 nombre();
