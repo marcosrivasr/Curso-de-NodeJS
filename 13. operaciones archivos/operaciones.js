@@ -14,6 +14,16 @@ const fs = require('fs');
     console.log('El archivo fue renombrado exitosamente...');
 }); */
 
+fs.rename('./config.txt', './prueba.txt', function (err) {
+    if(err){
+        throw(err);
+    }
+
+    console.log('El archivo fue renombrado exitosamente...');
+});
+
+
+
 // mover archivo 📂 ➡️ 📂
 /* fs.rename('./prueba.txt', './src/prueba.txt', (err)=>{
     if(err){
@@ -24,6 +34,6 @@ const fs = require('fs');
 }); */
 
 
-// eliminar archivo ❌
+/* // eliminar archivo ❌
 fs.unlinkSync('./src/prueba.txt');
-console.log('El archivo ha sido eliminado');
+console.log('El archivo ha sido eliminado'); */
