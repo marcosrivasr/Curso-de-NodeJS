@@ -27,3 +27,6 @@ fs.readdir('./', (error, files) => {
     console.log('Contenido del archivo...');
 });
 
+// Pero se aconseja usar steams cuando estemos usando ficheros con tamaños muy grandes
+// Además permite no solo leer texto, sino también cualquier tipo de bytes de un fichero
+
