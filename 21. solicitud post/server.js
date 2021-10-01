@@ -12,8 +12,10 @@ http.createServer((req, res) =>{
 
         req.on('data', chunk =>{body+= chunk;});
 
+
         req.on('end', () =>{
             res.writeHead(200, {'Content-Type': 'text/html'});
+/* 
             res.end(`
             <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +31,32 @@ http.createServer((req, res) =>{
 </body>
 </html>
             `);
+ */
+
+            let stream = fs.createReadStream('./desplegarPost.html', 'UTF-8');
+
+            let data = '';
+            
+            stream.once('data', () =>{
+                console.log('Iniciando el stream...\n');
+            });
+            
+            stream.on('data', (chunk) =>{
+                //console.log(`${chunk.length} |`);
+                data += chunk;
+            });
+            
+            stream.on('end', ()=>{
+                console.log('Fin del stream...\n');
+                res.end(data.replace('${body}', body));
+
+                
+                
+            });
+
+            // Esta línea de abajo sustituye las líneas de arriba para cargar el fichero por steam
+            // fs.createReadStream('./desplegarPost.html', 'UTF-8').pipe(res);
+
         });
     }
 
