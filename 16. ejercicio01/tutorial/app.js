@@ -22,8 +22,8 @@ const pantalla = `
 mainScreen();
 
 function mainScreen(){
-    process.stdout.write('\033c');
-
+    process.stdout.write('\033c'); // Para vaciar la pantalla / tipo clear ó CLS
+    
     interface.question(pantalla, res => {
         switch(res.trim()){
             case '1':
