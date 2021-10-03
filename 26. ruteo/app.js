@@ -11,6 +11,14 @@ const ordenes = [
     {'nombre': 'pasta', 'cantidad': 4, 'estado': 'en proceso', 'mesa': 1},
 ];
 
+app.get('/', (req, res) =>{
+    res.send("Hola a todos");
+});
+
+app.get('/home', (req, res) =>{
+    res.send("Estás en la página de inicio");
+});
+
 app.get('/pedidos-en-proceso', (req, res) =>{
     pedidosEnProceso(res);
 });
