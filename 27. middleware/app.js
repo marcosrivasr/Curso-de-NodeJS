@@ -1,3 +1,6 @@
+// Para ver como funciona este código poner en el navegador por ejemplo:
+// localhost:3000/?nombre=Jero&apellido=Sanchez
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -15,7 +18,12 @@ app.get('/', urlencodedParser, (req, res) =>{
     params.forEach(param => {
         let object = param.split('=');
         text += object[0] + ' : ' + object[1] + '<br/>'; 
-    }); */
+    }); 
+    
+    res.send(`<h1>Tus datos son: <br/> ${text} </h1>`);
+    console.log(text);
+    */
+
     res.send(`<h1>Tus datos son: <br/>
     Nombre: ${req.query.nombre} <br/>
     Apellido: ${req.query.apellido} </h1>`);
