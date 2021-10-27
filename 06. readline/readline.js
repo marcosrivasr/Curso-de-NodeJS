@@ -8,12 +8,14 @@ var persona = {
     comentarios: []
 };
 
+function askByComentary() {
+  rl.setPrompt('Dime un comentario: ');
+  rl.prompt();
+}
+
 rl.question('Cuál es tu nombre? ', (respuesta) => {
     persona.nombre = respuesta;
-
-    rl.setPrompt('Dime un comentario: ');
-    rl.prompt();
-
+    askByComentary();
 });
 
 rl.on('line', (input) => {
@@ -22,13 +24,12 @@ rl.on('line', (input) => {
         console.log(mensaje);
         process.exit();
     }
-    persona.comentarios.push(input.trim());
 
-    rl.setPrompt('Dime un comentario: ');
-    rl.prompt();
+    persona.comentarios.push(input.trim());
+    askByComentary();
 });
 
-const request = https.request(options, (res) => {
+/* const request = https.request(options, (res) => {
             context.log(`statusCode: ${res.statusCode}`);
 
   res.on('data', (d) => {
@@ -41,4 +42,4 @@ request.on('error', (error) => {
   context.error(error);
 });
 
-request.end();
+request.end(); */

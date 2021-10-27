@@ -21,10 +21,11 @@ const archivo = 'prueba.txt';
 //escribir en un archivo
 const contenido = 'Este es el contenido de un texto';
 
+// Crea el archivo de una manera síncrona
 //fs.writeFileSync(archivo, contenido);
 //console.log('Se ha escrito en el archivo');
 
-//asíncrona
+// Crea el archivo de una manera asíncrona
 /*fs.writeFile(archivo, contenido, (err) =>{
     if(err) throw('Hubo un error al escribir en el archivo');
 

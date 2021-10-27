@@ -8,6 +8,7 @@ const ordenes = [
     {'nombre': 'pasta', 'cantidad': 4, 'estado': 'en proceso', 'mesa': 1},
 ];
 
+/*
 http.createServer((req, res) =>{
     if(req.url == '/'){
         res.writeHead(200, {'Content-Type': 'text/json'});
@@ -42,4 +43,40 @@ const pedidosPorNombre = (nombre, res) =>{
 
     res.writeHead(200, {'Content-Type': 'text/json'});
     res.end(JSON.stringify(arregloRes));
+}
+*/
+
+http.createServer((req, res) =>{
+    if(req.url == '/'){
+        renderizar( res, 200, 'text/json', JSON.stringify(ordenes) );
+    }else if(req.url == '/ordenes-proceso'){
+        pedidosEnProceso(res);
+    }else if(req.url == '/ordenes-sopa'){
+        pedidosPorNombre('sopa', res);
+    }else{
+        renderizar( res, 404, 'text/plain', 'No se encontró la solicitud requerida' );
+    }
+    
+}).listen(3000);
+
+
+function pedidosEnProceso (res){
+    const arregloRes = ordenes.filter(item =>{
+        return item.estado == 'en proceso';
+    });
+
+    renderizar( res, 200, 'text/json', JSON.stringify(arregloRes) );
+}
+
+function pedidosPorNombre (nombre, res){
+    const arregloRes = ordenes.filter(item =>{
+        return item.nombre == nombre;
+    });
+
+    renderizar( res, 200, 'text/json', JSON.stringify(arregloRes) );
+}
+
+function renderizar(res, estado, contentType, queRenderizamos) {
+    res.writeHead(estado, {'Content-Type': contentType});
+    res.end(queRenderizamos);
 }

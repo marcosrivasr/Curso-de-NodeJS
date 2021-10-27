@@ -22,14 +22,16 @@ class Directory{
     }
 
     getShortPath(){
-        const paths = path.parse(this._path);
-        let delimiter = '/';
+        const paths = path.parse(this._path); // path.parse lo que hace es desintegrar (separar por bytes) this._path (__dirname)
+        let delimiter = '/'; // Primero designamos el separador de directorios con /
 
-        if(paths.dir.indexOf(delimiter) < 0){
-            delimiter = `\\`;
+        // Pero según el sistema operativo tengo que ver que si me devuelve / ó \ en windows
+        if(paths.dir.indexOf(delimiter) < 0){ // buscamos con indexOf si se encuentra el delimitador /
+            // No ha encontrado el delimitador /, por lo que el SO es windows
+            delimiter = `\\`; // Pongo dos barras invertidas porque si dejo una sóla es como si le dijeramos que va a ser un comando especial
         }
 
-        return `${paths.root}...${delimiter}${paths.name}`;
+        return `${paths.root}...${delimiter}${paths.name}`; // Devolvemos una manera más corta del path donde nos encontramos
     }
 
     getFilesInDir(){
